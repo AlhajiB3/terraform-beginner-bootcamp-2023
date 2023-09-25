@@ -23,11 +23,28 @@ The terraform CLI installation instructions have changed due to gg keyring chang
 
 ## Considerations for Linux Distribution 
 
-
+This Project is built against Ubuntu
 
 ## Refactoring into Bash Scripts 
 
 While fixing the Terraform CLI gpg depreciation issues we notice that bash scripts steps were a considerable amount more code.  So we decided to create a bash script to install the Terraform CLI
+
+Example of running os:
+
+cat /etc/os-release
+
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
 
 
 This bash script is located here: [./bin/install-terraform](./bin/install-terraform)
@@ -43,12 +60,32 @@ A shebang (Pronounced Sha-bang) tells the bash script what program that will int
 Chapt GPT recommended this format for bash: #!/usr/bin/env bash
 
 - for portability for different OS distributions
-- will search the user's PATH for the bash eexcutable
+- will search the user's PATH for the bash executable
 
 When executing the bash script we can use the `./` shortahnd to execute the bash script.
 
 https://en.wikipedia.org/wiki/Shebang_(Unix)
 
 
-## Linux Permissions Considerations
+## Execeutable Consirations 
 
+When executing the bash `./` shortahnd notiation 
+
+````sh
+chmod u+x ./bin/install-terraform-cli
+
+akternatively:
+
+```sh
+chmod u+x ./bin/install-terraform-cli
+
+#### Linux Permissions Considerations
+
+In order to make our bash scripts we need to change linux permission for the fix t be exectuable at the user mode.
+
+
+## Github Lifecycle (Before, Init, Command)
+
+We need to be careful when using the Init because it will not rerun if we restart an exisitng workspace
+
+https://www.gitpod.io/docs/configure/workspaces/tasks
