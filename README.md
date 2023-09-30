@@ -52,3 +52,40 @@ https://en.wikipedia.org/wiki/Shebang_(Unix)
 
 ## Linux Permissions Considerations
 
+## Working Env Vars
+
+We can list out all Environment Variables (EN Vars) using the `env` command
+
+We can filter specific en vars using grep eg. `env | grep AWS_`
+
+## Setting and Unseeting Env Vars
+
+In the terminal we can set using `export HELLO='world``
+
+In the terminal we can unset using `unset HELLO`
+
+We can set an env var temporarily running a command 
+
+```sh 
+
+HELLO='world' ./bin/print_message
+```
+Within a bash script we can set env var without writing export eg.
+
+``````
+HELLO='world'
+echo $hello
+````
+#### Printing Vars 
+We can print an env var using echo eg. `echo $HELLO`
+## Scoping of ENV Vars
+When you open up new bash terminals in VSCode it will not be aware of env vars that you have set in another window.
+If you want to Env Vars to persist across all future bash terminals that are open you need to set vars in your bash profile.  eg `.bash_profile`
+##Persisting Env Vars in Gitpod
+We can persist env vars into gitpod by storing them in Gitpod Secret Storage
+``````
+gp env HELLO='world'
+
+All future workspaces launched will set the env vars for all bash terminals opended in those workspaces.
+
+You can also set en vars in the `.gitpod.yml` but this can only contain non-senstive en vars.
